@@ -2,10 +2,19 @@ package api.casino.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name="user")
 public class User {
@@ -16,6 +25,7 @@ public class User {
 	
 	private String username;
 	private String email;
+	@JsonIgnore
 	private String password;
 	private String firstName;
 	private String lastName;
@@ -27,16 +37,30 @@ public class User {
 	private String zipCode;
 	private String city;
 	private String address2;
+	@JsonIgnore
 	private String phoneNumber;
+	@JsonIgnore
 	private String bankAccountNumber;
 	//private int bankAccountCountry;
-	private String bankIdentificationCode;	
+	@JsonIgnore
+	private String bankIdentificationCode;
+	@JsonIgnore
 	private String internationalBankAccountNumber;
 	private String language;
 	private String currency;
 	
-	//private int userType;	
+	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
+	@JoinColumn(name="user_type_id")
+	private UserType userType;
 	
+	//@ManyToOne(fetch = FetchType.LAZY)
+	//@OneToMany(mappedBy = "parent_user_id")
+	//@JoinColumn(name="parent_user_id", referencedColumnName = "user_to_id")
+	//@JoinColumn(name="parent_user_id", referencedColumnName = "user_to_id")
+	@OneToOne
+	@JoinColumn(name="parent_user_id", referencedColumnName = "user_to_id")
+	private UserForUser parentUser;
+		
 	public User() {
 		
 	}
@@ -44,7 +68,7 @@ public class User {
 	public User(int id, String username, String email, String password, String firstName, String lastName,
 			String gender, Date birthdate, String address, String isBanned, String verificationStatus, String zipCode,
 			String city, String address2, String phoneNumber, String bankAccountNumber, String bankIdentificationCode,
-			String internationalBankAccountNumber, String language, String currency) {
+			String internationalBankAccountNumber, String language, String currency, UserType userType) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -66,6 +90,7 @@ public class User {
 		this.internationalBankAccountNumber = internationalBankAccountNumber;
 		this.language = language;
 		this.currency = currency;
+		this.userType = userType;
 	}
 
 	public int getId() {
@@ -226,6 +251,22 @@ public class User {
 
 	public void setCurrency(String currency) {
 		this.currency = currency;
+	}
+	
+	public UserType getUserType() {
+		return userType;
+	}
+
+	public void setUserType(UserType userType) {
+		this.userType = userType;
+	}
+
+	public UserForUser getParentUser() {
+		return parentUser;
+	}
+
+	public void setParentUser(UserForUser parentUser) {
+		this.parentUser = parentUser;
 	}
 	
 }
