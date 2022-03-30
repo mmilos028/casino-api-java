@@ -51,9 +51,11 @@ public class User {
 	@JoinColumn(name="user_type_id")
 	private UserType userType;
 	
+	
 	@OneToMany(targetEntity = UserForUser.class, mappedBy = "userTo", fetch = FetchType.LAZY)
 	private Set<User> userTo;
 	
+	@JsonIgnore
 	@OneToMany(targetEntity = Session.class, fetch = FetchType.LAZY)
 	private Set<Session> session; 
 			

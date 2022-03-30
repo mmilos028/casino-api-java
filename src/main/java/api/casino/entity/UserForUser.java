@@ -1,7 +1,5 @@
 package api.casino.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,16 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
-import org.hibernate.annotations.NaturalId;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name="user_for_user")
-public class UserForUser /*implements Serializable*/ {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 2391237923735437142L;
+public class UserForUser {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,8 +23,10 @@ public class UserForUser /*implements Serializable*/ {
 	private String userForName = "";
 	
 	//@NaturalId
+	@JsonIgnore
 	@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
 	private User userTo;
+	
 	
 	@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
 	private User userFor;
