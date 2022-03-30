@@ -1,9 +1,9 @@
 package api.casino.entity;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,8 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name="user")
@@ -53,14 +51,12 @@ public class User {
 	@JoinColumn(name="user_type_id")
 	private UserType userType;
 	
-	//@ManyToOne(fetch = FetchType.LAZY)
-	//@OneToMany(mappedBy = "parent_user_id")
-	//@JoinColumn(name="parent_user_id", referencedColumnName = "user_to_id")
-	//@JoinColumn(name="parent_user_id", referencedColumnName = "user_to_id")
-	@OneToOne
-	@JoinColumn(name="parent_user_id", referencedColumnName = "user_to_id")
-	private UserForUser parentUser;
-		
+	@OneToMany(targetEntity = UserForUser.class, mappedBy = "userTo", fetch = FetchType.LAZY)
+	private Set<User> userTo;
+	
+	@OneToMany(targetEntity = Session.class, fetch = FetchType.LAZY)
+	private Set<Session> session; 
+			
 	public User() {
 		
 	}
@@ -260,13 +256,21 @@ public class User {
 	public void setUserType(UserType userType) {
 		this.userType = userType;
 	}
-
-	public UserForUser getParentUser() {
-		return parentUser;
+	
+	public Set<User> getUserTo() {
+		return userTo;
 	}
-
-	public void setParentUser(UserForUser parentUser) {
-		this.parentUser = parentUser;
+	
+	public void setUserTo(Set<User> userTo) {
+		this.userTo = userTo;
+	}
+	
+	public Set<Session> getSession() {
+		return session;
+	}
+	
+	public void setSession(Set<Session> session) {
+		this.session = session;
 	}
 	
 }

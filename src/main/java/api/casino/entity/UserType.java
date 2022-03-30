@@ -9,7 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity(name="user_type")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class UserType {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,8 +20,8 @@ public class UserType {
 	private String name;
 	private int isSuperType = 0;
 	
-	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)
-	@JoinColumn(name="user_type_id")
+	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
+	@JoinColumn(name="parent_user_type_id")
 	private UserType parentUserType = null;
 	
 	public UserType() {

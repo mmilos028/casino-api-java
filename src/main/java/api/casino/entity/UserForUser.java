@@ -1,32 +1,41 @@
 package api.casino.entity;
 
-import javax.persistence.CascadeType;
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.NaturalId;
 
 @Entity(name="user_for_user")
-public class UserForUser {
+public class UserForUser /*implements Serializable*/ {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2391237923735437142L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	//@ManyToOne(targetEntity = User.class, cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-	//@JoinColumn(name="user_to_id")
-	//@Column(name = "user_to_id")
-	@OneToOne(mappedBy="user_to")
-	private int userTo = 0;
+	@Column(nullable = true)
+	private String userToName = "";
 	
-	//@ManyToOne(targetEntity = User.class, cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-	@Column(name = "user_for_id")
-	private int userFor = 0;
+	@Column(nullable = true)
+	private String userForName = "";
+	
+	//@NaturalId
+	@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+	private User userTo;
+	
+	@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+	private User userFor;
 	
 	public UserForUser() {
 		
@@ -40,20 +49,36 @@ public class UserForUser {
 		this.id = id;
 	}
 
-	public int getUserTo() {
+	public User getUserTo() {
 		return userTo;
 	}
-
-	public void setUserTo(int userTo) {
+	
+	public void setUserTo(User userTo) {
 		this.userTo = userTo;
 	}
 
-	public int getUserFor() {
+	public User getUserFor() {
 		return userFor;
 	}
 
-	public void setUserFor(int userFor) {
+	public void setUserFor(User userFor) {
 		this.userFor = userFor;
+	}
+	
+	public String getUserToName() {
+		return userToName;
+	}
+
+	public void setUserToName(String userToName) {
+		this.userToName = userToName;
+	}
+
+	public String getUserForName() {
+		return userForName;
+	}
+
+	public void setUserForName(String userForName) {
+		this.userForName = userForName;
 	}
 
 	@Override
