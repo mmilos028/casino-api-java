@@ -1,6 +1,7 @@
 package api.casino.entity;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -8,18 +9,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity(name="user_type")
+@Entity(name="UserType")
+@Table(name="user_type")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class UserType {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	
 	private String name;
+	
+	@Column(name="is_super_type")
 	private int isSuperType = 0;
 	
+	@JsonIgnore
 	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
 	@JoinColumn(name="parent_user_type_id")
 	private UserType parentUserType = null;

@@ -2,40 +2,55 @@ package api.casino.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-@Entity(name="session")
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+@Entity(name="Session")
+@Table(name="session")
 public class Session {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 		
+	@Column(name="start_date")
 	private Date startDate;
 	
+	@Column(name="end_Date")
 	private Date endDate = null;
 	
 	private Double credits;
 	
 	private String currency;
 	
+	@Column(name="session_state")
 	private String sessionState = null;
 	
+	@Column(name="ip_address")
 	private String ipAddress;
 	
+	@Column(name="session_token")
 	private String sessionToken = null;
 	
+	@Column(name="user_agent")
 	private String userAgent;
 		
 	@ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)
+	@JoinColumn(name="user_id")
 	private User user;	
 	
 	@ManyToOne(targetEntity = SessionType.class, fetch = FetchType.EAGER)
+	@JoinColumn(name="session_type_id")
 	private SessionType sessionType;
 	
 	public Session() {
@@ -131,6 +146,26 @@ public class Session {
 		this.sessionType = sessionType;
 	}
 	
-	
+	@Override
+	public boolean equals(Object obj) {
+		// 
+		if(!Session.class.isInstance(obj))return false;
+		
+		Session session = (Session)obj;
+		
+		return new EqualsBuilder()
+				.append(id, session.id)
+				.append(currency, session.currency)
+				.isEquals();	
+	}
+
+	@Override
+	public int hashCode() {
+		// 
+		return new HashCodeBuilder()
+				.append(id)
+				.append(currency)
+				.toHashCode();
+	}
 
 }

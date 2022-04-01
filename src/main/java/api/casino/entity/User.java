@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,9 +13,17 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity(name="user")
+@Entity(name="User")
+@Table(name="user")
+@XmlRootElement(name = "Users", namespace = "Users")
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,40 +34,69 @@ public class User {
 	private String email;
 	@JsonIgnore
 	private String password;
+	
+	@Column(name="first_name")
 	private String firstName;
+	
+	@Column(name="last_name")
 	private String lastName;
+	
 	private String gender;
+	
 	private Date birthdate;
+	
 	private String address;
+	
+	@Column(name="is_banned")
 	private String isBanned;
+	
+	@Column(name="verification_status")
 	private String verificationStatus;
+	
+	@Column(name="zip_code")
 	private String zipCode;
+	
 	private String city;
+	
 	private String address2;
+	
 	@JsonIgnore
+	@Column(name="phone_number")
 	private String phoneNumber;
+	
 	@JsonIgnore
+	@Column(name="bank_account_number")
 	private String bankAccountNumber;
+	
 	//private int bankAccountCountry;
+	
 	@JsonIgnore
+	@Column(name="bank_identification_code")
 	private String bankIdentificationCode;
+	
 	@JsonIgnore
+	@Column(name="international_bank_account_number")
 	private String internationalBankAccountNumber;
+	
 	private String language;
+	
 	private String currency;
 	
+	@JsonIgnore
 	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
 	@JoinColumn(name="user_type_id")
 	private UserType userType;
 	
-	
+	@JsonIgnore
 	@OneToMany(targetEntity = UserForUser.class, mappedBy = "userTo", fetch = FetchType.LAZY)
 	private Set<User> userTo;
 	
+	/*
 	@JsonIgnore
 	@OneToMany(targetEntity = Session.class, fetch = FetchType.LAZY)
-	private Set<Session> session; 
-			
+	private Set<Session> session;
+	*/
+				
 	public User() {
 		
 	}
@@ -267,12 +305,36 @@ public class User {
 		this.userTo = userTo;
 	}
 	
-	public Set<Session> getSession() {
+	/*public Set<Session> getSession() {
 		return session;
 	}
 	
 	public void setSession(Set<Session> session) {
 		this.session = session;
+	}*/
+	
+	@Override
+	public boolean equals(Object obj) {
+		// 
+		if(!User.class.isInstance(obj))return false;
+		
+		User user = (User)obj;
+		
+		return new EqualsBuilder()
+				.append(id, user.id)
+				.append(username, user.username)
+				.append(email, user.email)
+				.isEquals();	
+	}
+
+	@Override
+	public int hashCode() {
+		// 
+		return new HashCodeBuilder()
+				.append(id)
+				.append(username)
+				.append(email)
+				.toHashCode();
 	}
 	
 }

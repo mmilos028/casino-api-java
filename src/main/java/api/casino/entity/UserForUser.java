@@ -6,29 +6,35 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity(name="user_for_user")
+@Entity(name="UserForUser")
+@Table(name="user_for_user")
 public class UserForUser {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@Column(nullable = true)
+	@Column(name="user_to_name", nullable = true)
 	private String userToName = "";
 	
-	@Column(nullable = true)
+	@Column(name="user_for_name", nullable = true)
 	private String userForName = "";
 	
 	//@NaturalId
 	@JsonIgnore
 	@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+	@JoinColumn(name="user_to_id")
 	private User userTo;
 	
 	
 	@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+	@JoinColumn(name="user_for_id")
 	private User userFor;
 	
 	public UserForUser() {
