@@ -15,8 +15,12 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+
 import api.casino.HibernateConf;
 import api.casino.entity.User;
+import api.casino.model.Users;
 import api.casino.service.UserService;
 
 @RestController
@@ -24,9 +28,9 @@ public class UserRestController {
 	
 	@Autowired
 	UserService userService;
-		
+			
 	@GetMapping(path = "/users")
-	public List<Object> retrieveAllUsers(){
+	public Users retrieveAllUsers(){
 		
 		//return userService.findAll();
 		
@@ -53,14 +57,21 @@ public class UserRestController {
 			txn.begin();
 			
 			//List<User> users = (List<User>) session.createNativeQuery("select user from User user");
-			Query query = session.createQuery("select user, user.userType from User as user join user.userType");
-			List<Object> users = query.getResultList();
+			//Query query = session.createQuery("select user, user.userType from User as user join user.userType");
+			Query query = session.createQuery("select user from User as user");
+			
+			
+			//List<Object> users = query.getResultList();
+			List<User> users = query.getResultList();
+			
+			Users usersOutput = new Users();
+			usersOutput.setUsers(users);
 			
 						
 			txn.commit();
 			session.close();			
 			
-			return users;
+			return usersOutput;
 		}catch(Exception e) {
 			if(txn != null)txn.rollback();
 			e.printStackTrace();

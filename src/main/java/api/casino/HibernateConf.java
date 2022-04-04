@@ -85,12 +85,13 @@ public class HibernateConf {
             settings.put("dialect", "org.hibernate.dialect.H2Dialect");
             settings.put("hibernate.connection.url", "jdbc:h2:mem:testdb");
             settings.put("hibernate.connection.username", "sa");
-            settings.put("hibernate.connection.password", "");            
+            settings.put("hibernate.connection.password", "");
+            settings.put("hibernate.connection.autocommit", "true");
             settings.put("hibernate.current_session_context_class", "thread");
             settings.put("hibernate.show_sql", "true");
             settings.put("hibernate.format_sql", "true");
-            settings.put("hibernate.hbm2ddl.auto", "create-drop"); //update
-            settings.put("hibernate.ddl.auto", "create-drop"); //update
+            settings.put("hibernate.hbm2ddl.auto", "update"); //update / create-drop
+            settings.put("hibernate.ddl-auto", "update"); //update / create-drop
             
             StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
             		.applySettings(settings)

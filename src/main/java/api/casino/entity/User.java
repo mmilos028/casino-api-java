@@ -1,5 +1,6 @@
 package api.casino.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -20,25 +21,43 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 @Entity(name="User")
 @Table(name="user")
-@XmlRootElement(name = "Users", namespace = "Users")
-public class User {
+@JacksonXmlRootElement(localName = "User")
+public class User implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 916382507342361472L;
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JacksonXmlProperty(localName = "id")
 	private int id;
 	
 	
+	@JacksonXmlProperty(localName = "user_name")
 	private String username;
+	
+	@JacksonXmlProperty(localName = "email")
 	private String email;
 	@JsonIgnore
 	private String password;
 	
 	@Column(name="first_name")
+	@JacksonXmlProperty(localName = "first_name")
+	@JsonProperty(value = "first_name")
 	private String firstName;
 	
 	@Column(name="last_name")
+	@JacksonXmlProperty(localName = "last_name")
+	@JsonProperty(value = "last_name")
 	private String lastName;
 	
 	private String gender;
@@ -48,12 +67,18 @@ public class User {
 	private String address;
 	
 	@Column(name="is_banned")
+	@JacksonXmlProperty(localName = "is_banned")
+	@JsonProperty(value = "is_banned")
 	private String isBanned;
 	
 	@Column(name="verification_status")
+	@JacksonXmlProperty(localName = "verification_status")
+	@JsonProperty(value = "verification_status")
 	private String verificationStatus;
 	
 	@Column(name="zip_code")
+	@JacksonXmlProperty(localName = "zip_code")
+	@JsonProperty(value = "zip_code")
 	private String zipCode;
 	
 	private String city;
@@ -62,6 +87,8 @@ public class User {
 	
 	@JsonIgnore
 	@Column(name="phone_number")
+	@JacksonXmlProperty(localName = "phone_number")
+	@JsonProperty(value = "phone_number")
 	private String phoneNumber;
 	
 	@JsonIgnore
