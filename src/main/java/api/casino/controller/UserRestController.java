@@ -2,23 +2,16 @@ package api.casino.controller;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-
-import api.casino.HibernateConf;
+import api.casino.config.HibernateConf;
 import api.casino.entity.User;
 import api.casino.model.Users;
 import api.casino.service.UserService;
@@ -48,7 +41,8 @@ public class UserRestController {
 		*/
 		
 		
-		SessionFactory sessionFactory = HibernateConf.getSessionFactory();
+		//SessionFactory sessionFactory = HibernateConf.getSessionFactory();
+		SessionFactory sessionFactory = HibernateConf.buildSessionFactoryConfig();
 		Session session = sessionFactory.openSession();
 		
 		Transaction txn = session.getTransaction();

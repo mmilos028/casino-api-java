@@ -1,4 +1,4 @@
-package api.casino;
+package api.casino.config;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,8 +12,12 @@ import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -26,6 +30,9 @@ import api.casino.entity.UserType;
 @Configuration
 @EnableTransactionManagement
 public class HibernateConf {
+	
+	@Autowired
+    private Environment env;
 		
     @Bean(name="entityManagerFactory")
     public LocalSessionFactoryBean jpaSessionFactory() {
@@ -42,9 +49,9 @@ public class HibernateConf {
     @Bean
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName("org.h2.Driver");
-        dataSource.setUrl("jdbc:h2:mem:testdb");
-        dataSource.setUsername("sa");
+        dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
+        dataSource.setUrl(env.getProperty("jdbc.url"));
+        dataSource.setUsername(env.getProperty("jdbc.user"));
         //dataSource.setPassword("sa");
 
         return dataSource;
@@ -65,8 +72,7 @@ public class HibernateConf {
         Properties jpaProperties = new Properties();
                 
         jpaProperties.setProperty("jpa.defer-datasource-initialization", "true");
-        jpaProperties.setProperty(
-        		"hibernate.hbm2ddl.auto", "update");
+        jpaProperties.setProperty("hibernate.hbm2ddl.auto", "update"); //update
         jpaProperties.setProperty(
         		"hibernate.dialect", "org.hibernate.dialect.H2Dialect");
 
@@ -75,6 +81,19 @@ public class HibernateConf {
     
     //private static final SessionFactory sessionFactory = buildSessionFactory();    
     
+    //from hibernate.cfg
+    public static SessionFactory buildSessionFactoryConfig() {
+	  // SessionFactory in Hibernate 5 example
+	  org.hibernate.cfg.Configuration config = new org.hibernate.cfg.Configuration();
+	  config.configure();
+	  // local SessionFactory bean created
+	  SessionFactory sessionFactory = config.buildSessionFactory();
+	  //org.hibernate.Session session = sessionFactory.getCurrentSession();
+	  //return session;
+	  return sessionFactory;
+    }
+    
+    //from method's java code
     private static SessionFactory buildSessionFactory() {
         try {
             
