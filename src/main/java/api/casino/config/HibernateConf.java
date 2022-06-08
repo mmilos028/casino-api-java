@@ -70,9 +70,9 @@ public class HibernateConf {
 	
     private final Properties jpaProperties() {
         Properties jpaProperties = new Properties();
-                
+        
         jpaProperties.setProperty("jpa.defer-datasource-initialization", "true");
-        jpaProperties.setProperty("hibernate.hbm2ddl.auto", "update"); //update
+        jpaProperties.setProperty("hibernate.hbm2ddl.auto", "create-drop"); //update or create-drop
         jpaProperties.setProperty(
         		"hibernate.dialect", "org.hibernate.dialect.H2Dialect");
 
@@ -102,6 +102,7 @@ public class HibernateConf {
             settings.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
             settings.put("hibernate.connection.dialect", "org.hibernate.dialect.H2Dialect");
             settings.put("dialect", "org.hibernate.dialect.H2Dialect");
+            settings.put("jpa.defer-datasource-initialization", "true");
             settings.put("hibernate.connection.url", "jdbc:h2:mem:testdb");
             settings.put("hibernate.connection.username", "sa");
             settings.put("hibernate.connection.password", "");
@@ -109,8 +110,9 @@ public class HibernateConf {
             settings.put("hibernate.current_session_context_class", "thread");
             settings.put("hibernate.show_sql", "true");
             settings.put("hibernate.format_sql", "true");
-            settings.put("hibernate.hbm2ddl.auto", "update"); //update / create-drop
-            settings.put("hibernate.ddl-auto", "update"); //update / create-drop
+            
+            settings.put("hibernate.hbm2ddl.auto", "create-drop"); //update / create-drop
+            settings.put("hibernate.ddl-auto", "create-drop"); //update / create-drop
             
             StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
             		.applySettings(settings)

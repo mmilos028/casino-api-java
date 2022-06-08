@@ -39,7 +39,7 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@JacksonXmlProperty(localName = "id")
-	private int id;
+	private Long id;
 	
 	
 	@JacksonXmlProperty(localName = "user_name")
@@ -128,7 +128,7 @@ public class User implements Serializable {
 		
 	}
 
-	public User(int id, String username, String email, String password, String firstName, String lastName,
+	public User(Long id, String username, String email, String password, String firstName, String lastName,
 			String gender, Date birthdate, String address, String isBanned, String verificationStatus, String zipCode,
 			String city, String address2, String phoneNumber, String bankAccountNumber, String bankIdentificationCode,
 			String internationalBankAccountNumber, String language, String currency, UserType userType) {
@@ -156,11 +156,11 @@ public class User implements Serializable {
 		this.userType = userType;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -1,4 +1,4 @@
-package api.casino.controller;
+package api.casino.controller.rest;
 
 import java.security.Principal;
 import java.util.Collection;

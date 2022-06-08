@@ -14,6 +14,9 @@
         <property name="hibernate.connection.url">jdbc:h2:mem:testdb</property>
         <property name="hibernate.connection.username">sa</property>
         <property name="hibernate.connection.password"></property>
+        
+        <property name="jpa.defer-datasource-initialization">true</property>
+        <property name="jpa.hibernate.ddl-auto">create-drop</property>
  
         <!-- add classes to map from here -->
         <mapping class="api.casino.entity.User" />
