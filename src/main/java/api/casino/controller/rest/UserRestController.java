@@ -40,8 +40,10 @@ import api.casino.controller.rest.exception.ResourceNotFoundException;
 import api.casino.entity.User;
 import api.casino.model.Users;
 import api.casino.service.UserService;
+import lombok.AllArgsConstructor;
 
 @RestController
+@AllArgsConstructor
 public class UserRestController {
 	
 	@Autowired

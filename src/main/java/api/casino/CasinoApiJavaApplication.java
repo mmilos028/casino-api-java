@@ -16,19 +16,19 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-@EnableWebSecurity(debug=true)
-@SpringBootApplication(exclude= {
+@SpringBootApplication(
+		/*exclude= {
 		org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class,
-		org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration.class,
-
-}, scanBasePackages = {
+		org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration.class,		
+		}, */
+		scanBasePackages = {
 		"api.casino",
-		"api.casino.config",
-		"api.casino.controller",
+		"api.casino.config",		
 		"api.casino.entity",
 		"api.casino.model",
 		"api.casino.repository",
-		"api.casino.service"
+		"api.casino.service",
+		"api.casino.controller",
 })
 public class CasinoApiJavaApplication {
 
