@@ -15,6 +15,12 @@ import javax.persistence.Table;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import api.casino.util.LocalDateTimeDeserializer;
+import api.casino.util.LocalDateTimeSerializer;
+
 @Entity(name="Session")
 @Table(name="session")
 public class Session {
@@ -27,6 +33,8 @@ public class Session {
 	private Date startDate;
 	
 	@Column(name="end_Date")
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	private Date endDate = null;
 	
 	private Double credits;

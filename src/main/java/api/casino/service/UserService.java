@@ -11,7 +11,6 @@ import api.casino.entity.User;
 import api.casino.repository.UserRepository;
 
 @Service
-//@Component
 public class UserService {
 	
 	@Autowired
