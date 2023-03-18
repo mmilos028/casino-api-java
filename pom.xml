@@ -15,7 +15,7 @@
 	<name>casino-api-java</name>
 	<description>Casino API Java on Spring Boot</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -158,6 +158,22 @@
 			<groupId>com.itextpdf</groupId>
 			<artifactId>hyph</artifactId>
 			<version>7.0.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+		</dependency>
+		
+		<dependency>
+    		<groupId>org.apache.kafka</groupId>
+    		<artifactId>kafka-streams</artifactId>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.github.javafaker</groupId>
+		    <artifactId>javafaker</artifactId>
+		    <version>0.15</version>
 		</dependency>
 
 	</dependencies>

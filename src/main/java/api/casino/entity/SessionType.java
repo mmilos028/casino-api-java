@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity(name="SessionType")
+@Entity
 @Table(name="session_type")
 public class SessionType {
 	@Id

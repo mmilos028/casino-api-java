@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity(name = "TransactionType")
+@Entity
 @Table(name="transaction_type")
 public class TransactionType {
 

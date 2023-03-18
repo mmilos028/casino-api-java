@@ -48,6 +48,9 @@ public class UserRestController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	SessionFactory sessionFactory;
 			
 	@GetMapping(path = "/users")
 	public Users retrieveAllUsers() throws ResourceNotFoundException {
@@ -67,7 +70,7 @@ public class UserRestController {
 		*/
 
 		//SessionFactory sessionFactory = HibernateConf.getSessionFactory();
-		SessionFactory sessionFactory = HibernateConf.buildSessionFactoryConfig();
+		//SessionFactory sessionFactory = HibernateConf.buildSessionFactoryConfig();
 		Session session = sessionFactory.openSession();
 
 		Transaction txn = session.getTransaction();

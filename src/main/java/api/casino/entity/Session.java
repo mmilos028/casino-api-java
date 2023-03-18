@@ -21,7 +21,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import api.casino.util.LocalDateTimeDeserializer;
 import api.casino.util.LocalDateTimeSerializer;
 
-@Entity(name="Session")
+@Entity
 @Table(name="session")
 public class Session {
 	

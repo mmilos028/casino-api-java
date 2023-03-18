@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity(name="UserForUser")
+@Entity
 @Table(name="user_for_user")
 public class UserForUser {
 

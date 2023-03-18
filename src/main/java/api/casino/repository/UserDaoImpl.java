@@ -18,12 +18,12 @@ public class UserDaoImpl implements UserDao {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserDaoImpl.class);
 
-	@Autowired(required = true)
-	private SessionFactory hibernateSessionFactory;// = HibernateConf.getSessionFactory();
+	@Autowired
+	private SessionFactory entityManagerFactory;// = HibernateConf.getSessionFactory();
 	
 	@Override
 	public Long addUser(User u) {
-		Session session = this.hibernateSessionFactory.getCurrentSession();
+		Session session = this.entityManagerFactory.getCurrentSession();
 		session.persist(u);
 		logger.info("User saved successfully, User Details={}", u);
 		
@@ -32,7 +32,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User getUserById(int id) {
-		Session session = this.hibernateSessionFactory.getCurrentSession();		
+		Session session = this.entityManagerFactory.getCurrentSession();		
 		User u = (User) session.load(User.class, Integer.valueOf(id));
 		logger.info("User loaded successfully, User details={}", u);
 		return u;
@@ -41,7 +41,7 @@ public class UserDaoImpl implements UserDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> listUsers() {
-		Session session = this.hibernateSessionFactory.getCurrentSession();		
+		Session session = this.entityManagerFactory.getCurrentSession();		
 		List<User> usersList = session.createQuery("from User").list();
 		for(User u : usersList){
 			logger.info("Users List::{}", u);
@@ -51,7 +51,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public void removeUser(int id) {
-		Session session = this.hibernateSessionFactory.getCurrentSession();
+		Session session = this.entityManagerFactory.getCurrentSession();
 		User u = (User) session.load(User.class, Integer.valueOf(id));
 		if(null != u){
 			session.delete(u);
@@ -62,7 +62,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public void updateUser(User u) {
-		Session session = this.hibernateSessionFactory.getCurrentSession();
+		Session session = this.entityManagerFactory.getCurrentSession();
 		session.update(u);
 		logger.info("User updated successfully, User Details={}", u);
 	}

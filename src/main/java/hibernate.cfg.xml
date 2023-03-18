@@ -22,5 +22,6 @@
         <mapping class="api.casino.entity.User" />
         <mapping class="api.casino.entity.UserType" />
         <mapping class="api.casino.entity.UserForUser" />
+        <mapping class="api.casino.entity.Session" />
     </session-factory>
 </hibernate-configuration>

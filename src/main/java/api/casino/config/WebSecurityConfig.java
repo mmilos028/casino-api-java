@@ -14,7 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SuppressWarnings("deprecation")
 @Configuration
-@EnableWebSecurity(debug=true)
+@EnableWebSecurity(debug=false)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	/*
@@ -36,13 +36,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		// TODO Auto-generated method stub
 		http.authorizeHttpRequests( authorize -> {
-			authorize.antMatchers("/", "/users").permitAll()
+			authorize.antMatchers("/", "/users", "/api/jackpot", "/api/promotion").permitAll()
 			;
 		})
-		.authorizeRequests()
-		.anyRequest().authenticated()
-		.and()
-		.formLogin().and().httpBasic()
+		.csrf().disable()
+		//.authorizeRequests()
+		//.anyRequest().authenticated()
+		//.and()
+		//.formLogin().and().httpBasic()
 		;
 	}
 	

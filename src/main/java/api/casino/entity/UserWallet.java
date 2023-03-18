@@ -8,7 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-@Entity(name="UserWallet")
+@Entity
 @Table(name="user_wallet")
 public class UserWallet {
 	@Id

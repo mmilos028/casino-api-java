@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity(name="BalanceType")
+@Entity
 @Table(name="balance_type")
 public class BalanceType {
 	@Id

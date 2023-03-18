@@ -16,16 +16,23 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
     	
+    	//dozvoljeno sve
+    	http
+    	.csrf().disable()
+    	.authorizeRequests()
+    	.antMatchers("/api/**")
+    	.permitAll()
+    	;
+    	
+    	//mora da koristi /oauth/token i test/test sa read da dobije token pa na bearer token
         http
-        	//.httpBasic()
-        	//.disable()
-            .antMatcher("/users")
-            .authorizeRequests()
-            .anyRequest()
-            .authenticated()
-            
-            //.access("#oauth2.hasScope('read')");
-            ;
+	        .antMatcher("/users")        	
+	        .authorizeRequests()
+	        .anyRequest()
+	        .authenticated()
+	        //.access("#oauth2.hasScope('read')");
+	        ;        
+        
     }
     
     /*@Configuration

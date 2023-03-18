@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity(name="UserType")
+@Entity
 @Table(name="user_type")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class UserType {
