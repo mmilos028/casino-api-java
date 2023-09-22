@@ -13,20 +13,20 @@ public class TransactionType {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Long id;
 
 	private String name;
 	
 	private String description;
 	
 	@Column(name="transaction_sign")
-	private int transactionSign;
+	private Integer transactionSign;
 
 	public TransactionType() {
 
 	}
 
-	public TransactionType(int id, String name, String description, int transactionSign) {
+	public TransactionType(Long id, String name, String description, Integer transactionSign) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -34,11 +34,11 @@ public class TransactionType {
 		this.transactionSign = transactionSign;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -58,11 +58,11 @@ public class TransactionType {
 		this.description = description;
 	}
 
-	public int getTransactionSign() {
+	public Integer getTransactionSign() {
 		return transactionSign;
 	}
 
-	public void setTransactionSign(int transactionSign) {
+	public void setTransactionSign(Integer transactionSign) {
 		this.transactionSign = transactionSign;
 	}
 

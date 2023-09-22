@@ -1,4 +1,4 @@
-package api.casino.entity;
+package api.casino.entity.user.session;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +14,7 @@ public class SessionType {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
+	@Column(name="name")
 	private String name;
 	
 	@Column(name="duration_limit")

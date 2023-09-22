@@ -52,6 +52,70 @@ insert into user_type
 (id, name, is_super_type, parent_user_type_id)
 values(110013, 'Internet Group', 0, 110004);
 
+--- INSERT CURRENCY
+insert into currency
+(id, code, name, description)
+values(20200, '978', 'EUR', 'Euro');
+
+insert into currency
+(id, code, name, description)
+values(20201, '777', 'ETH', 'Ethereum');
+
+insert into currency
+(id, code, name, description)
+values(20202, '112', 'BTC', 'Bitcoin');
+
+insert into currency
+(id, code, name, description)
+values(20203, '840', 'USD', 'United States Dollar');
+
+insert into currency
+(id, code, name, description)
+values(20204, '003', 'USDT', 'USDT');
+
+insert into currency
+(id, code, name, description)
+values(20205, '007', 'USDTE', 'Tether Ethereum');
+
+insert into currency
+(id, code, name, description)
+values(20206, '006', 'USDTT', 'Tether Tron');
+
+insert into currency
+(id, code, name, description)
+values(20207, '000', 'FUN', 'Fun currency');
+
+insert into currency
+(id, code, name, description)
+values(20208, '005', 'LTC', 'Litecoin');
+
+insert into currency
+(id, code, name, description)
+values(20209, '333', 'DOGE', 'DogeCoin');
+
+insert into currency
+(id, code, name, description)
+values(20210, '941', 'RSD', 'Republic Serbia Dinar');
+
+insert into currency
+(id, code, name, description)
+values(20211, '888', 'BCH', 'Bitcoin Cash');
+
+insert into currency
+(id, code, name, description)
+values(20212, '826', 'GBP', 'Pound Sterling');
+
+insert into currency
+(id, code, name, description)
+values(20213, '756', 'CHF', 'Swiss Franc');
+
+insert into currency
+(id, code, name, description)
+values(20214, '203', 'CZK', 'Czeck Koruna');
+
+insert into currency
+(id, code, name, description)
+values(20215, '008', 'ALL', 'Albanian Lek');
 
 --- INSERT USER
 insert into user

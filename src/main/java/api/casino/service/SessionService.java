@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import api.casino.entity.Session;
+import api.casino.entity.user.session.Session;
 import api.casino.repository.SessionRepository;
 
 @Service

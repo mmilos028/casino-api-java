@@ -20,12 +20,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class UserType {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Long id;
 	
 	private String name;
 	
 	@Column(name="is_super_type")
-	private int isSuperType = 0;
+	private Integer isSuperType = 0;
 	
 	@JsonIgnore
 	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
@@ -36,17 +36,17 @@ public class UserType {
 		
 	}
 	
-	public UserType(int id, String name, int isSuperType, UserType parentUserType) {
+	public UserType(Long id, String name, Integer isSuperType, UserType parentUserType) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.isSuperType = isSuperType;
 		this.parentUserType = parentUserType;
 	}
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -55,10 +55,10 @@ public class UserType {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getIsSuperType() {
+	public Integer getIsSuperType() {
 		return isSuperType;
 	}
-	public void setIsSuperType(int isSuperType) {
+	public void setIsSuperType(Integer isSuperType) {
 		this.isSuperType = isSuperType;
 	}
 	public UserType getParentUserType() {

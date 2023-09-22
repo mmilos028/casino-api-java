@@ -1,4 +1,4 @@
-package api.casino.entity;
+package api.casino.entity.user.session;
 
 import java.util.Date;
 
@@ -18,6 +18,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+import api.casino.entity.User;
 import api.casino.util.LocalDateTimeDeserializer;
 import api.casino.util.LocalDateTimeSerializer;
 
@@ -32,7 +33,7 @@ public class Session {
 	@Column(name="start_date")
 	private Date startDate;
 	
-	@Column(name="end_Date")
+	@Column(name="end_date")
 	@JsonSerialize(using = LocalDateTimeSerializer.class)
 	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
 	private Date endDate = null;
@@ -65,7 +66,6 @@ public class Session {
 		// TODO Auto-generated constructor stub
 	}
 	
-
 	public int getId() {
 		return id;
 	}

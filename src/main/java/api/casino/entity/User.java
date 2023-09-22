@@ -43,12 +43,15 @@ public class User implements Serializable {
 	@JacksonXmlProperty(localName = "id")
 	private Long id;
 	
-	
-	@JacksonXmlProperty(localName = "user_name")
+	@Column(name="username")
+	@JacksonXmlProperty(localName = "username")
 	private String username;
 	
+	@Column(name="email")
 	@JacksonXmlProperty(localName = "email")
 	private String email;
+	
+	@Column(name="password")
 	@JsonIgnore
 	private String password;
 	
@@ -62,12 +65,15 @@ public class User implements Serializable {
 	@JsonProperty(value = "last_name")
 	private String lastName;
 	
+	@Column(name="gender")
 	private String gender;
 	
 	@JsonSerialize(using = LocalDateTimeSerializer.class)
 	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
+	@Column(name="birthdate")
 	private Date birthdate;
 	
+	@Column(name="address")
 	private String address;
 	
 	@Column(name="is_banned")
@@ -85,8 +91,10 @@ public class User implements Serializable {
 	@JsonProperty(value = "zip_code")
 	private String zipCode;
 	
+	@Column(name="city")
 	private String city;
 	
+	@Column(name="address2")
 	private String address2;
 	
 	@JsonIgnore
@@ -109,8 +117,10 @@ public class User implements Serializable {
 	@Column(name="international_bank_account_number")
 	private String internationalBankAccountNumber;
 	
+	@Column(name="language")
 	private String language;
 	
+	@Column(name="currency")
 	private String currency;
 	
 	@JsonIgnore
