@@ -229,7 +229,7 @@ insert into balance_type
 (id, name)
 values(28006, 'RESTRICTED PROMOTION');
 
---INSERT TRANSACTION TYPE
+--- INSERT TRANSACTION TYPE
 insert into transaction_type
 (id, name, description, transaction_sign)
 values(76001, 'DEPOSIT FROM CODE', 'Deposit from code', 1);
@@ -238,19 +238,19 @@ insert into transaction_type
 (id, name, description, transaction_sign)
 values(76002, 'WITHDRAW FROM CODE', 'Withdraw from code', -1);
 
---INSERT Balance for player into UserWallet
+--- INSERT Balance for player into UserWallet
 insert into user_wallet
-(id, balance, currency, balance_type_id, user_id)
-values(7001001, 0.0028, 'BTC', 28001, 11001);
+(id, balance, currency_id, balance_type_id, user_id)
+values(7001001, 0.0028, 20202, 28001, 11001); --- BTC
 
 insert into user_wallet
-(id, balance, currency, balance_type_id, user_id)
-values(7001002, 5.0028, 'LTC', 28001, 11001);
+(id, balance, currency_id, balance_type_id, user_id)
+values(7001002, 5.0028, 20208, 28001, 11001); --- LTC
 
 insert into user_wallet
-(id, balance, currency, balance_type_id, user_id)
-values(7001003, 0.05, 'ETH', 28001, 11001);
+(id, balance, currency_id, balance_type_id, user_id)
+values(7001003, 0.05, 20201, 28001, 11001); --- ETH
 
 insert into user_wallet
-(id, balance, currency, balance_type_id, user_id)
-values(7001004, 50.05, 'EUR', 28001, 11001);
+(id, balance, currency_id, balance_type_id, user_id)
+values(7001004, 50.05, 20200, 28001, 11001); --- EUR
