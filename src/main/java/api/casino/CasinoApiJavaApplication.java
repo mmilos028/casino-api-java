@@ -6,7 +6,9 @@ import java.util.Collections;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -56,7 +58,7 @@ import org.springframework.web.filter.CorsFilter;
 @EntityScan("api.casino.entity")
 @EnableJpaRepositories(basePackages={"api.casino.repository"})
 @EnableKafka
-public class CasinoApiJavaApplication {
+public class CasinoApiJavaApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CasinoApiJavaApplication.class, args);
@@ -76,5 +78,10 @@ public class CasinoApiJavaApplication {
 	    bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
 	    return bean;
 	}
+	
+	@Override
+	  protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+	    return builder.sources(CasinoApiJavaApplication.class);
+	  }
 	
 }
