@@ -16,14 +16,14 @@
 	<name>casino-api-java</name>
 	<description>Casino API Java on Spring Boot</description>
 	<properties>
-	
-	        
-    <start-class>api.casino</start-class>
-	
+		        
+    	<start-class>api.casino</start-class>	
 	
 		<java.version>17</java.version>
 		
   		<skipTests>true</skipTests>
+  		
+  		<failOnMissingWebXml>false</failOnMissingWebXml>
   
 	</properties>
 	<dependencies>
