@@ -58,7 +58,7 @@ import org.springframework.web.filter.CorsFilter;
 @EntityScan("api.casino.entity")
 @EnableJpaRepositories(basePackages={"api.casino.repository"})
 @EnableKafka
-public class CasinoApiJavaApplication extends SpringBootServletInitializer {
+public class CasinoApiJavaApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CasinoApiJavaApplication.class, args);
@@ -78,10 +78,5 @@ public class CasinoApiJavaApplication extends SpringBootServletInitializer {
 	    bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
 	    return bean;
 	}
-	
-	@Override
-	  protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-	    return builder.sources(CasinoApiJavaApplication.class);
-	  }
 	
 }

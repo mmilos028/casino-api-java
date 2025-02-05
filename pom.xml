@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>api.casino</groupId>
 	<artifactId>casino-api-java</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>casino-api-java</name>
 	<description>Casino API Java on Spring Boot</description>
@@ -22,9 +22,6 @@
 		<java.version>17</java.version>
 
 		<skipTests>true</skipTests>
-
-		<failOnMissingWebXml>false</failOnMissingWebXml>
-
 	</properties>
 	<dependencies>
 		<dependency>
@@ -45,13 +42,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<exclusions>
-				<exclusion>
-					<artifactId>spring-boot-starter-tomcat</artifactId>
-					<groupId>org.springframework.boot</groupId>
-				</exclusion>					
-			</exclusions>
+			<artifactId>spring-boot-starter-web</artifactId>			
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security.oauth</groupId>
@@ -201,13 +192,6 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
 		</plugins>
