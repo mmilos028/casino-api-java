@@ -128,6 +128,7 @@ public class UserRestController {
 		;
 	}
 	
+	/*
 	@GetMapping(path = "/pdf")
 	public ResponseEntity<?> getPDF(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
@@ -187,6 +188,6 @@ public class UserRestController {
                 .contentType(MediaType.APPLICATION_PDF) 
                 .body(baos.toByteArray());   
 
-	}
+	}*/
 
 }
